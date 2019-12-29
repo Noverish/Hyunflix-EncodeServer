@@ -16,3 +16,11 @@ export interface EncodeStatus {
   speed: number;
   progress: number;
 }
+
+export interface FFProbeVideo {
+  duration: number;
+  bitrate: number;
+  size: number;
+  width: number;
+  height: number;
+}

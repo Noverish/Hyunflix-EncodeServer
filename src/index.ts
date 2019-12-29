@@ -3,8 +3,8 @@ import * as EventSource from 'eventsource';
 import { parse } from 'path';
 import "reflect-metadata";
 
-import { Encode } from '@src/entity/Encode';
-import { ffmpeg, unlink, rename } from '@src/rpc';
+import { Encode, Video } from '@src/entity';
+import { ffmpeg, unlink, rename, ffprobeVideo } from '@src/rpc';
 import { FFMpegStatus, EncodeStatus } from '@src/models';
 import { sleep } from '@src/utils';
 import { RPC_SERVER_SSE } from '@src/config';
@@ -64,6 +64,18 @@ async function encodeVideo(encode: Encode) {
         await unlink(inpath);
         await rename(outpath, inpath);
       }
+      
+      const video = await Video.findOne({ path: outpath });
+      if (video) {
+        const probed = await ffprobeVideo(outpath);
+        video.duration = probed.duration;
+        video.width = probed.width;
+        video.height = probed.height;
+        video.bitrate = probed.bitrate;
+        video.size = probed.size.toString();
+        video.save();
+      }
+      
       logger.log(`FINISH/${pid}`, inpath, outpath, ...args);
       main();
     })();

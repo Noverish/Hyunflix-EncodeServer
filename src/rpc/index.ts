@@ -1,6 +1,7 @@
 import * as jayson from 'jayson';
 
 import { RPC_SERVER_HOST, RPC_SERVER_PORT } from '@src/config';
+import { FFProbeVideo } from '@src/models';
 
 // TODO from config
 const client = jayson.Client.http({
@@ -24,7 +25,11 @@ function call(functionName, args): Promise<any> {
 }
 
 export async function ffmpeg(inpath: string, outpath: string, args: string[]): Promise<number> {
-  return await call('ffmpeg', { inpath, outpath, args });
+  return call('ffmpeg', { inpath, outpath, args });
+}
+
+export async function ffprobeVideo(path: string): Promise<FFProbeVideo> {
+  return call('ffprobeVideo', { path });
 }
 
 export function rename(from: string, to: string): Promise<void> {
