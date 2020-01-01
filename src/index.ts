@@ -65,7 +65,7 @@ async function encodeVideo(encode: Encode) {
         await rename(outpath, inpath);
       }
       
-      const video = await Video.findOne({ path: outpath });
+      const video = await Video.findOne({ path: encode.outpath });
       if (video) {
         const probed = await ffprobeVideo(outpath);
         video.duration = probed.duration;
