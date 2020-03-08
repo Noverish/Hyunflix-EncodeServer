@@ -67,7 +67,7 @@ async function encodeVideo(encode: Encode) {
       
       const video = await Video.findOne({ path: encode.outpath });
       if (video) {
-        const probed = await ffprobeVideo(outpath);
+        const probed = await ffprobeVideo(encode.outpath);
         video.duration = probed.duration;
         video.width = probed.width;
         video.height = probed.height;
@@ -76,13 +76,13 @@ async function encodeVideo(encode: Encode) {
         video.save();
       }
       
-      logger.log(`FINISH/${pid}`, inpath, outpath, ...args);
+      logger.log(`FINISH/${pid}`, inpath, encode.outpath, ...args);
       main();
     })();
   });
   
   es.addEventListener(ERROR_EVENT, (event) => {
-    logger.log(`ERROR/${pid}`, inpath, outpath, ...args);
+    logger.log(`ERROR/${pid}`, inpath, encode.outpath, ...args);
     logger.log(`ERROR/${pid}`, event);
     console.error(ERROR_EVENT, event);
     Encode.update(encode.id, { progress: -1 });

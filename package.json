@@ -11,17 +11,17 @@
   "license": "ISC",
   "dependencies": {
     "eventsource": "^1.0.7",
-    "jayson": "^3.1.2",
-    "mysql": "^2.17.1",
+    "jayson": "^3.2.0",
+    "mysql": "^2.18.1",
     "reflect-metadata": "^0.1.13",
     "ssestream": "^1.0.1",
-    "typeorm": "^0.2.20"
+    "typeorm": "^0.2.24"
   },
   "devDependencies": {
-    "@types/node": "^12.12.11",
-    "nodemon": "^2.0.0",
-    "ts-node": "^8.5.2",
+    "@types/node": "^13.9.0",
+    "nodemon": "^2.0.2",
+    "ts-node": "^8.6.2",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "^3.7.2"
+    "typescript": "^3.8.3"
   }
 }
