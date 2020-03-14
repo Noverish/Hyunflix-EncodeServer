@@ -4,7 +4,7 @@ module.exports = {
  "port": 3306,
  "username": "root",
  "password": process.env.DATABASE_PASSWORD,
- "database": "hyunsub2",
+ "database": "hyunflix-api",
  "synchronize": false,
  "logging": false,
  "entities": [

@@ -1,10 +1,18 @@
 {
-  "name": "encode",
+  "name": "Hyunflix-EncodeServer",
   "version": "1.0.0",
-  "description": "",
+  "description": ".",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec 'ts-node -r tsconfig-paths/register' --watch 'src/**/*.ts' src/index.ts"
+    "dev": "nodemon --exec 'ts-node -r tsconfig-paths/register' --watch 'src/**/*.ts' src/index.ts",
+    "start": "ts-node -r tsconfig-paths/register src/index.ts",
+    "check": "tsc --noEmit",
+    "eslint": "eslint 'src/**/*.ts'",
+    "eslint:fix": "eslint 'src/**/*.ts' --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Noverish/Hyunflix-EncodeServer.git"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +27,12 @@
   },
   "devDependencies": {
     "@types/node": "^13.9.0",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-typescript": "^7.0.0",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "eslint-plugin-import": "^2.20.1",
     "nodemon": "^2.0.2",
     "ts-node": "^8.6.2",
     "tsconfig-paths": "^3.9.0",

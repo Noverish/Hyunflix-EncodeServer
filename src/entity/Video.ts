@@ -1,7 +1,9 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity, BaseEntity, PrimaryGeneratedColumn, Column,
+} from 'typeorm';
 
 @Entity()
-export class Video extends BaseEntity {
+export default class Video extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

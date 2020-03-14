@@ -1,2 +1,2 @@
-export { Encode } from './Encode';
-export { Video } from './Video';
+export { default as Encode } from './Encode';
+export { default as Video } from './Video';

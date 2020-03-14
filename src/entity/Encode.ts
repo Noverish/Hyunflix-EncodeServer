@@ -1,7 +1,9 @@
-import { Entity, BaseEntity, PrimaryColumn, Column } from 'typeorm';
+import {
+  Entity, BaseEntity, PrimaryColumn, Column,
+} from 'typeorm';
 
 @Entity()
-export class Encode extends BaseEntity {
+export default class Encode extends BaseEntity {
   @PrimaryColumn()
   id: number;
 

@@ -5,10 +5,6 @@ ENV TZ='Asia/Seoul'
 
 WORKDIR /app
 
-COPY node_modules  /app/node_modules
-COPY src           /app/src
-COPY ormconfig.js  /app
-COPY package.json  /app
-COPY tsconfig.json /app
+COPY . /app
 
-CMD ["npm", "start"]
+CMD npm start
