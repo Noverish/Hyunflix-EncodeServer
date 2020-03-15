@@ -1,7 +1,6 @@
 {
   "name": "Hyunflix-EncodeServer",
-  "description": ".",
-  "license": "ISC",
+  "private": true,
   "scripts": {
     "dev": "nodemon --exec 'ts-node -r tsconfig-paths/register' --watch 'src/**/*.ts' src/index.ts",
     "start": "ts-node -r tsconfig-paths/register src/index.ts",
@@ -29,9 +28,5 @@
     "ts-node": "^8.6.2",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.8.3"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Noverish/Hyunflix-EncodeServer.git"
   }
 }
