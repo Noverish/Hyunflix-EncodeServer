@@ -1,9 +1,9 @@
-FROM node:10.16.3-alpine
+FROM node:12.16.1-alpine
+
+WORKDIR /app
 
 RUN apk add --no-cache tzdata
 ENV TZ='Asia/Seoul'
-
-WORKDIR /app
 
 COPY . /app
 

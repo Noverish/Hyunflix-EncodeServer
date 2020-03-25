@@ -1,5 +1,5 @@
 import { createServer, IncomingMessage, ServerResponse } from 'http';
-import * as SSEStream from 'ssestream';
+import SSEStream from 'ssestream';
 import { logger } from '@src/utils';
 
 import { PORT } from '@src/config';
