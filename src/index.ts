@@ -16,21 +16,28 @@ const STATUS_EVENT = 'status';
 const FINISH_EVENT = 'finish';
 const ERROR_EVENT = 'error';
 
-function main() {
-  setTimeout(() => {
-    Encode.findOne({ progress: 0 })
-      .then((encode: Encode | null) => {
-        if (encode) {
-          return encodeVideo(encode);
-        }
-        return Promise.resolve();
-      })
-      .catch(console.log)
-      .then(main);
-  }, 1000);
+async function main() {
+  const encode: Encode | null = await Encode.findOne({ progress: 0 });
+  if (encode) {
+    try {
+      await encodeVideoPromise(encode);
+    } catch (err) {
+      console.error(err);
+      await Encode.update(encode.id, { progress: -1 });
+    }
+  }
+  setTimeout(main, 1000);
 }
 
-async function encodeVideo(encode: Encode) {
+function encodeVideoPromise(encode: Encode): Promise<void> {
+  return new Promise((resolve, reject) => {
+    encodeVideo(encode, () => {
+      resolve();
+    })
+  })
+}
+
+async function encodeVideo(encode: Encode, callback: () => void): Promise<void> {
   const args: string[] = encode.options.split(' ');
   const { inpath } = encode;
   const outpath: string = (inpath === encode.outpath)
@@ -76,7 +83,7 @@ async function encodeVideo(encode: Encode) {
     }
 
     logger(`FINISH/${pid}`, inpath, encode.outpath, ...args);
-    main();
+    callback();
   });
 
   es.addEventListener(ERROR_EVENT, (event) => {
@@ -84,7 +91,7 @@ async function encodeVideo(encode: Encode) {
     logger(`ERROR/${pid}`, event);
     console.error(ERROR_EVENT, event);
     Encode.update(encode.id, { progress: -1 });
-    main();
+    callback();
   });
 }
 
