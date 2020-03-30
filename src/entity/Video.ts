@@ -8,9 +8,6 @@ export default class Video extends BaseEntity {
   id: number;
 
   @Column()
-  title: string;
-
-  @Column()
   path: string;
 
   @Column()
