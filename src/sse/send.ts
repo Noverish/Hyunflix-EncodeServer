@@ -30,5 +30,5 @@ server.listen(PORT, () => {
 export default function send(data: object | string) {
   Array.from(streams.entries())
     .filter(([req, stream]) => req.url === SSE_PATH)
-    .forEach(([req, stream]) => stream.write(data));
+    .forEach(([req, stream]) => stream.write({ data }));
 }
