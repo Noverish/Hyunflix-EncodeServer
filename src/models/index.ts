@@ -1,3 +1,5 @@
+export * from './dto';
+
 export interface FFMpegStatus {
   frame: number;
   fps: number;

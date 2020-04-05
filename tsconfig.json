@@ -4,10 +4,8 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "lib": ["es6", "dom", "es2017"],
-    "baseUrl": ".",                   // absolute path
-    "paths": {"@src/*" : ["./src/*"]},// absolute path
-    "emitDecoratorMetadata": true,    // typeorm
-    "experimentalDecorators": true    // typeorm
+    "baseUrl": ".",                    // absolute path
+    "paths": {"@src/*" : ["./src/*"]}  // absolute path
   },
   "include": [
     "src/**/*"

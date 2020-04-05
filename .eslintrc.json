@@ -21,6 +21,7 @@
   "rules": {
     "radix": "off",
     "no-console": "off",
+    "object-curly-newline": ["error", { "ImportDeclaration": "never" }],
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/no-unused-vars": ["error", { "args": "none" }]
   },
