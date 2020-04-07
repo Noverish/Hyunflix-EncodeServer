@@ -9,13 +9,14 @@ axios.interceptors.request.use((config) => {
   return newConfig;
 });
 
-export async function listEncode(): Promise<EncodeDTO[]> {
+export async function getFirstQueuedEncode(): Promise<EncodeDTO | undefined> {
   const config: AxiosRequestConfig = {
     url: `${API_SERVER}/encodes`,
     method: 'get',
+    params: { status: 'queued', order: 'asc', ps: 1, p: 1 },
   };
 
-  return (await axios(config)).data.results;
+  return (await axios(config)).data.results[0];
 }
 
 export async function updateEncode(encodeId: number, args: Partial<EncodeDTO>): Promise<void> {

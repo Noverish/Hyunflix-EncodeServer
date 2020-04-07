@@ -1,7 +1,7 @@
 import * as EventSource from 'eventsource';
 
 import { ffmpeg, unlink, rename, ffprobeVideo } from '@src/rpc';
-import { listEncode, updateEncode, updateEncodeBefore, updateEncodeAfter } from '@src/api';
+import { getFirstQueuedEncode, updateEncode, updateEncodeBefore, updateEncodeAfter } from '@src/api';
 import { FFMpegStatus, EncodeStatus, EncodeDTO } from '@src/models';
 import { logger } from '@src/utils';
 import { RPC_SERVER_SSE, STATUS_EVENT, FINISH_EVENT, ERROR_EVENT } from '@src/config';
@@ -59,8 +59,7 @@ function encodeVideoPromise(encode: EncodeDTO) {
 }
 
 async function main() {
-  const encodes: EncodeDTO[] = await listEncode();
-  const encode: EncodeDTO | undefined = encodes.find((v) => v.before === null);
+  const encode: EncodeDTO | undefined = await getFirstQueuedEncode();
   if (encode) {
     logger('inpath', encode.inpath);
     logger('outpath', encode.outpath);
