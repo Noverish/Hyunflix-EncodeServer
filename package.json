@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "eventsource": "^1.0.7",
+    "eventsource": "^2.0.2",
     "jayson": "^3.2.0",
     "ssestream": "^1.0.1"
   },
